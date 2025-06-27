@@ -154,7 +154,10 @@ I've run out of free credits from OpenAI and Anthropic, but these improvements w
 - Real-time AI coaching during simulations -> again pulling in these career coaching frameworks as needed
 - More realistic relationship dynamics that build up over time
 - Multimodality -> as mentioned in the doc, using Pika to create images, or something for voice synthesis
-- MANY more Agentic AI features ahead too! 
+- MANY more Agentic AI features ahead too!
+  - Multi-agent orchestration with specialized roles (facilitator, observer, subject matter expert agents)
+  - Tool-using agents that can access external APIs, search knowledge bases, and generate dynamic scenarios
+  - Self-improving agents that learn from user interactions and adapt their coaching strategies over time 
 
 ### Making it scale
 - Postgres for user data, maybe Redis for real-time state
