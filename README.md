@@ -3,6 +3,8 @@
 ## Overview
 A 10-minute workplace simulation where users lead their first team meeting, testing executive function through realistic team dynamics and decision-making.
 
+<img src="media/meet_team.png" alt="Meet Your Team Phase" width="45%"> <img src="media/delegate_UI.png" alt="Task Delegation Interface" width="45%">
+
 ## Tech Stack
 - **Backend**: FastAPI + SQLite
 - **Frontend**: Bootstrap 5 + Vanilla JS
@@ -29,6 +31,8 @@ Handle emerging tensions:
 - What approach to take
 - When to intervene vs. let it play out
 
+<img src="media/conflict.png" alt="Conflict Resolution Interface" width="45%"> <img src="media/delegate.png" alt="Team Task Management" width="45%">
+
 ## Assessment Framework
 
 Based on [NACE Career Readiness Competencies](https://www.naceweb.org/career-readiness/competencies/career-readiness-defined#competencies):
@@ -41,6 +45,8 @@ Based on [NACE Career Readiness Competencies](https://www.naceweb.org/career-rea
 | **Leadership** | Decision timing, team morale management |
 | **Professionalism** | Response consistency, meeting time management |
 | **Equity & Inclusion** | Ensuring all voices heard, adapting communication style |
+
+<img src="media/score.png" alt="Competency Scoring Results" width="60%">
 
 ## API Structure
 
@@ -133,16 +139,30 @@ The simulation follows [Kolb's learning cycle](https://www.simplypsychology.org/
 4. **Active Experimentation**: Applying insights in real workplace
 
 ### Career Coaching
-
-Current:
 - **[Situational Leadership II](https://www.kenblanchard.com/Solutions/Situational-Leadership-II)** - Players adapt leadership styles based on team member's skill and motivation level. There should be no one-size-fits-all approach.  
-
 - **[Radical Candor](https://www.radicalcandor.com/our-approach/)** - Players (hopefully) learn to care personally AND challenge directly. This mainly teaches to avoid ruinous empathy or obnoxious aggression. 
 
-Future:
+---
 
+## Future Work
+
+### Using actual LLMs
+I've run out of free credits from OpenAI and Anthropic, but if these improvements would be the first thing on my mind:
+- Each character gets their own system prompt with personality traits
+- Let them actually converse naturally instead of scripted responses
+- Adaptive difficulty using RL to adjust complexity based on performance
+- Real-time AI coaching during simulations -> again pulling in these career coaching frameworks as needed
+- More realistic relationship dynamics that build up over time
+- Multimodality -> as mentioned in the doc, using Pika to create images, or something for voice synthesis
+- MANY more Agentic AI features ahead too! 
+
+### Making it scale
+- Postgres for user data, maybe Redis for real-time state
+- Break into microservices - simulation engine, scoring, user management
+- Multi-user scenarios could be interesting for team training
+- Docker + AWS with auto-scaling
+
+### More coaching frameworks
 - **[The Five Practices](https://www.leadershipchallenge.com/about-tlc-about.aspx)** - We could create specific mini-challenges for each practice, like "inspire a demotivated Jordan" or "enable Sam to mentor Alex."
-
 - **[Tuckman's Team Stages](https://www.mindtools.com/pages/article/newLDR_86.htm)** - With more thought, we could involve a multi-session arc where the same team progresses through stages, requiring different leadership approaches each time.
-
 - **[Multipliers](https://thewisemangroup.com/books/multipliers/)** - Potentially add "team output multiplier" metric showing how user's leadership style affects collective team performance vs. individual contributions.
