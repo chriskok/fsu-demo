@@ -1,0 +1,344 @@
+/* Custom styles for EF Assessment MVP */
+
+:root {
+    --primary-color: #0066cc;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --info-color: #17a2b8;
+    --light-gray: #f8f9fa;
+    --border-color: #dee2e6;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-gray);
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.25rem;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+}
+
+/* Team Member Cards */
+.team-member-card {
+    border-left: 4px solid var(--primary-color);
+}
+
+.team-member-card.happy {
+    border-left-color: var(--success-color);
+}
+
+.team-member-card.frustrated {
+    border-left-color: var(--danger-color);
+}
+
+/* Task Cards */
+.task-card {
+    transition: background-color 0.2s ease;
+}
+
+.task-card:hover {
+    background-color: rgba(0, 102, 204, 0.05);
+}
+
+/* Progress Bars */
+.progress {
+    height: 8px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    transition: width 0.3s ease;
+}
+
+/* Workload indicators */
+.workload-low {
+    background-color: var(--success-color);
+}
+
+.workload-medium {
+    background-color: var(--warning-color);
+}
+
+.workload-high {
+    background-color: var(--danger-color);
+}
+
+/* Action Buttons */
+.btn {
+    font-weight: 500;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Activity Log */
+#activity-log {
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+.activity-entry {
+    background-color: white;
+    border-radius: 4px;
+    border-left: 3px solid var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+.activity-entry:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.activity-entry.success {
+    border-left-color: var(--success-color);
+}
+
+.activity-entry.warning {
+    border-left-color: var(--warning-color);
+}
+
+.activity-entry.danger {
+    border-left-color: var(--danger-color);
+}
+
+/* Modals */
+.modal-content {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom: none;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Forms */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+}
+
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25);
+}
+
+/* Timer and Phase Indicator */
+#timer, #phase-indicator {
+    font-weight: 500;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 0.25rem 0.75rem;
+}
+
+/* Welcome Screen */
+#welcome-screen .card {
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+#welcome-screen .card-body {
+    padding: 3rem;
+}
+
+/* Results Screen */
+.competency-score {
+    margin-bottom: 1.5rem;
+}
+
+.score-badge {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    #welcome-screen .card-body {
+        padding: 2rem 1.5rem;
+    }
+    
+    .btn {
+        margin-bottom: 0.5rem;
+    }
+    
+    .navbar-nav .nav-link {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn-group-vertical .btn {
+        margin-bottom: 0.25rem;
+    }
+    
+    .modal-dialog {
+        margin: 1rem;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Mood Indicators */
+.mood-happy {
+    color: var(--success-color);
+}
+
+.mood-neutral {
+    color: #6c757d;
+}
+
+.mood-frustrated {
+    color: var(--danger-color);
+}
+
+/* Team Member Status */
+.team-status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.team-status-indicator.happy {
+    background-color: var(--success-color);
+}
+
+.team-status-indicator.neutral {
+    background-color: #6c757d;
+}
+
+.team-status-indicator.frustrated {
+    background-color: var(--danger-color);
+}
+
+/* Task Priority Indicators */
+.priority-high {
+    border-left: 4px solid var(--danger-color);
+}
+
+.priority-medium {
+    border-left: 4px solid var(--warning-color);
+}
+
+.priority-low {
+    border-left: 4px solid var(--success-color);
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* Custom Scrollbar */
+#activity-log::-webkit-scrollbar {
+    width: 6px;
+}
+
+#activity-log::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#activity-log::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+#activity-log::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Accessibility Improvements */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 2px solid #000;
+    }
+    
+    .btn-outline-primary {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

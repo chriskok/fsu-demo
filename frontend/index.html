@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EF Assessment MVP - Team Leadership Simulation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container-fluid px-0">
+        <!-- Header -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <span class="navbar-brand">EF Assessment MVP</span>
+                <div class="navbar-nav ms-auto">
+                    <span class="nav-item nav-link" id="timer">Time: 00:00</span>
+                    <span class="nav-item nav-link" id="phase-indicator">Phase: Getting Started</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="container mt-4">
+            <!-- Welcome Screen -->
+            <div id="welcome-screen" class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h1 class="card-title">Welcome to Your First Team Meeting</h1>
+                            <p class="card-text lead">
+                                You're about to lead a 10-minute team meeting where you'll meet your team, 
+                                delegate tasks, and navigate workplace dynamics.
+                            </p>
+                            <p class="card-text">
+                                This simulation will assess your executive function skills across six key competencies:
+                                Critical Thinking, Communication, Teamwork, Leadership, Professionalism, and Equity & Inclusion.
+                            </p>
+                            <button id="start-simulation" class="btn btn-primary btn-lg">Start Simulation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Simulation Screen -->
+            <div id="simulation-screen" class="d-none">
+                <div class="row">
+                    <!-- Team Members Panel -->
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Your Team</h5>
+                            </div>
+                            <div class="card-body" id="team-members">
+                                <!-- Team members will be populated here -->
+                            </div>
+                        </div>
+
+                        <!-- Available Tasks Panel -->
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h5 class="mb-0">Available Tasks</h5>
+                            </div>
+                            <div class="card-body" id="available-tasks">
+                                <!-- Tasks will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Action Panel -->
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0" id="current-phase">Meet Your Team</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Phase-specific content -->
+                                <div id="phase-content">
+                                    <!-- Dynamic content based on current phase -->
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="mt-4">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-outline-primary w-100 mb-2" id="ask-question-btn">
+                                                Ask Question
+                                            </button>
+                                            <button class="btn btn-outline-success w-100 mb-2" id="send-message-btn">
+                                                Send Message
+                                            </button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-warning w-100 mb-2" id="delegate-task-btn">
+                                                Delegate Task
+                                            </button>
+                                            <button class="btn btn-outline-danger w-100 mb-2" id="address-conflict-btn">
+                                                Address Conflict
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Activity Log -->
+                        <div class="card mt-3">
+                            <div class="card-header">
+                                <h6 class="mb-0">Activity Log</h6>
+                            </div>
+                            <div class="card-body" id="activity-log" style="max-height: 200px; overflow-y: auto;">
+                                <!-- Activity entries will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div id="results-screen" class="d-none">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title text-center">Simulation Complete!</h2>
+                                <p class="text-center lead">Here's how you performed across the six NACE competencies:</p>
+                                
+                                <div id="competency-scores">
+                                    <!-- Competency scores will be populated here -->
+                                </div>
+
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-primary" onclick="location.reload()">Try Again</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Modals -->
+    
+    <!-- Ask Question Modal -->
+    <div class="modal fade" id="questionModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ask a Question</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Select team member:</label>
+                        <select class="form-select" id="question-target">
+                            <option value="">Choose a team member...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your question:</label>
+                        <textarea class="form-control" id="question-text" rows="3" placeholder="What would you like to ask?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="send-question">Ask Question</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Send Message Modal -->
+    <div class="modal fade" id="messageModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Send Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Select team member:</label>
+                        <select class="form-select" id="message-target">
+                            <option value="">Choose a team member...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Your message:</label>
+                        <textarea class="form-control" id="message-text" rows="3" placeholder="What would you like to say?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="send-message">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delegate Task Modal -->
+    <div class="modal fade" id="taskModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delegate Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Select task:</label>
+                        <select class="form-select" id="task-select">
+                            <option value="">Choose a task...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Assign to:</label>
+                        <select class="form-select" id="task-assignee">
+                            <option value="">Choose a team member...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Optional message:</label>
+                        <textarea class="form-control" id="task-message" rows="2" placeholder="Any additional instructions or encouragement?"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-warning" id="delegate-task">Delegate Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Address Conflict Modal -->
+    <div class="modal fade" id="conflictModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Address Team Conflict</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You notice tension between Sam and Jordan about project priorities. How do you want to handle this?</p>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="conflictApproach" id="approach1" value="address_both">
+                            <label class="form-check-label" for="approach1">
+                                Address both team members together in the meeting
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="conflictApproach" id="approach2" value="private_meetings">
+                            <label class="form-check-label" for="approach2">
+                                Schedule private one-on-one meetings with each
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="conflictApproach" id="approach3" value="ignore">
+                            <label class="form-check-label" for="approach3">
+                                Let them work it out themselves
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="resolve-conflict">Address Conflict</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/simulation.js"></script>
+</body>
+</html>
