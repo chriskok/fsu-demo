@@ -129,18 +129,18 @@ fsu-demo/
 ---
 
 ## References
-The methodologies that I mainly drew inspiration from:
+The methodologies that I drew inspiration from:
 
 ### Project-Based Learning
 The simulation follows [Kolb's learning cycle](https://www.simplypsychology.org/learning-kolb.html):
-1. **Concrete Experience**: The meeting scenario
-2. **Reflective Observation**: Post-simulation metrics showing impact of decisions
-3. **Abstract Conceptualization**: Connecting actions to NACE competencies
-4. **Active Experimentation**: Applying insights in real workplace
+1. Concrete Experience: The meeting scenario
+2. Reflective Observation: Post-simulation metrics showing impact of decisions
+3. Abstract Conceptualization: Connecting actions to NACE competencies
+4. Active Experimentation: Applying insights in real workplace
 
 ### Career Coaching
-- **[Situational Leadership II](https://www.kenblanchard.com/Solutions/Situational-Leadership-II)** - Players adapt leadership styles based on team member's skill and motivation level. There should be no one-size-fits-all approach.  
-- **[Radical Candor](https://www.radicalcandor.com/our-approach/)** - Players (hopefully) learn to care personally AND challenge directly. This mainly teaches to avoid ruinous empathy or obnoxious aggression. 
+- [Situational Leadership II](https://www.kenblanchard.com/Solutions/Situational-Leadership-II) - Players adapt leadership styles based on team member's skill and motivation level. There should be no one-size-fits-all approach.  
+- [Radical Candor](https://www.radicalcandor.com/our-approach/) - Players (hopefully) learn to care personally AND challenge directly. This mainly teaches to avoid ruinous empathy or obnoxious aggression. 
 
 ---
 
@@ -166,6 +166,6 @@ I've run out of free credits from OpenAI and Anthropic, but these improvements w
 - Docker + AWS with auto-scaling
 
 ### More coaching frameworks
-- **[The Five Practices](https://www.leadershipchallenge.com/about-tlc-about.aspx)** - We could create specific mini-challenges for each practice, like "inspire a demotivated Jordan" or "enable Sam to mentor Alex."
-- **[Tuckman's Team Stages](https://www.mindtools.com/pages/article/newLDR_86.htm)** - With more thought, we could involve a multi-session arc where the same team progresses through stages, requiring different leadership approaches each time.
-- **[Multipliers](https://thewisemangroup.com/books/multipliers/)** - Potentially add "team output multiplier" metric showing how user's leadership style affects collective team performance vs. individual contributions.
+- [The Five Practices](https://www.leadershipchallenge.com/about-tlc-about.aspx) - We could create specific mini-challenges for each practice, like "inspire a demotivated Jordan" or "enable Sam to mentor Alex."
+- [Tuckman's Team Stages](https://www.mindtools.com/pages/article/newLDR_86.htm) - With more thought, we could involve a multi-session arc where the same team progresses through stages, requiring different leadership approaches each time.
+- [Multipliers](https://thewisemangroup.com/books/multipliers/) - Potentially add "team output multiplier" metric showing how user's leadership style affects collective team performance vs. individual contributions.
