@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EF Assessment MVP - Team Leadership Simulation</title>
+    <title>Executive Function POC - Team Leadership Simulation</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/styles.css">
 </head>
@@ -12,10 +12,25 @@
         <!-- Header -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <span class="navbar-brand">EF Assessment MVP</span>
-                <div class="navbar-nav ms-auto">
+                <span class="navbar-brand">Executive Function POC</span>
+                <div class="navbar-nav ms-auto d-flex align-items-center">
                     <span class="nav-item nav-link" id="timer">Time: 00:00</span>
                     <span class="nav-item nav-link" id="phase-indicator">Phase: Getting Started</span>
+                    
+                    <!-- Phase Navigation Dropdown (hidden by default) -->
+                    <div class="nav-item dropdown d-none" id="phase-nav-dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Skip to Phase
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#" data-phase="meet_team">Meet Your Team</a></li>
+                            <li><a class="dropdown-item" href="#" data-phase="delegate_tasks">Delegate Tasks</a></li>
+                            <li><a class="dropdown-item" href="#" data-phase="navigate_conflicts">Navigate Conflicts</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" data-phase="completed">View Results</a></li>
+                            <li><a class="dropdown-item text-danger" href="#" id="reset-simulation">Reset Simulation</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -28,13 +43,9 @@
                     <div class="card">
                         <div class="card-body text-center">
                             <h1 class="card-title">Welcome to Your First Team Meeting</h1>
-                            <p class="card-text lead">
+                            <p class="card-text">
                                 You're about to lead a 10-minute team meeting where you'll meet your team, 
                                 delegate tasks, and navigate workplace dynamics.
-                            </p>
-                            <p class="card-text">
-                                This simulation will assess your executive function skills across six key competencies:
-                                Critical Thinking, Communication, Teamwork, Leadership, Professionalism, and Equity & Inclusion.
                             </p>
                             <button id="start-simulation" class="btn btn-primary btn-lg">Start Simulation</button>
                         </div>

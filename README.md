@@ -1,4 +1,4 @@
-# EF Assessment MVP
+# Executive Function POC
 
 ## Overview
 A 10-minute workplace simulation where users lead their first team meeting, testing executive function through realistic team dynamics and decision-making.
@@ -84,16 +84,16 @@ cd fsu-demo
 uv sync
 
 # Run development server
-uv run uvicorn backend.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn backend.main:app --reload --host 0.0.0.0 --port 5001
 
-# Navigate to http://localhost:8000
+# Navigate to http://localhost:5001
 ```
 
 ### Alternative Commands
 
 ```bash
 # Run production server
-uv run uvicorn backend.main:app --host 0.0.0.0 --port 8000
+uv run uvicorn backend.main:app --host 0.0.0.0 --port 5001
 
 # Install additional dependencies
 uv add <package-name>

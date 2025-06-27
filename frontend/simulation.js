@@ -68,6 +68,21 @@ class SimulationManager {
         document.getElementById('resolve-conflict').addEventListener('click', () => {
             this.submitConflictResolution();
         });
+
+        // Phase navigation dropdown
+        document.querySelectorAll('[data-phase]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const phase = e.target.getAttribute('data-phase');
+                this.skipToPhase(phase);
+            });
+        });
+
+        // Reset simulation
+        document.getElementById('reset-simulation').addEventListener('click', (e) => {
+            e.preventDefault();
+            this.resetSimulation();
+        });
     }
 
     async startSimulation() {
@@ -90,6 +105,9 @@ class SimulationManager {
             // Hide welcome screen, show simulation
             document.getElementById('welcome-screen').classList.add('d-none');
             document.getElementById('simulation-screen').classList.remove('d-none');
+
+            // Show phase navigation dropdown
+            document.getElementById('phase-nav-dropdown').classList.remove('d-none');
 
             // Start timer
             this.startTimer();
@@ -438,17 +456,15 @@ class SimulationManager {
         const scoresContainer = document.getElementById('competency-scores');
         scoresContainer.innerHTML = '';
 
-        // Calculate overall rating
+        // Get overall rating from backend
         const scores = Object.values(results.competency_scores);
         const averageScore = scores.reduce((sum, comp) => sum + comp.score, 0) / scores.length;
         
-        let overallRating = 'Needs Improvement';
+        const overallRating = results.overall_rating;
         let ratingClass = 'danger';
-        if (averageScore >= 80) {
-            overallRating = 'Excellent';
+        if (overallRating === 'Excellent') {
             ratingClass = 'success';
-        } else if (averageScore >= 60) {
-            overallRating = 'Good';
+        } else if (overallRating === 'Good') {
             ratingClass = 'warning';
         }
 
@@ -496,6 +512,69 @@ class SimulationManager {
             `;
             scoresContainer.appendChild(competencyCard);
         });
+    }
+
+    async skipToPhase(phase) {
+        if (!this.sessionId) {
+            alert('No active session. Please start a simulation first.');
+            return;
+        }
+
+        try {
+            const response = await fetch(`/api/session/${this.sessionId}/skip-to-phase`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ phase: phase })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to skip to phase');
+            }
+
+            // Update simulation state
+            await this.updateSimulationState();
+
+            // Log the phase skip
+            this.logActivity({ type: 'phase_skip' }, { 
+                message: `Skipped to phase: ${phase}`, 
+                team_member_reaction: `Development mode: Jumped to ${phase} phase` 
+            });
+
+        } catch (error) {
+            console.error('Error skipping to phase:', error);
+            alert('Failed to skip to phase. Please try again.');
+        }
+    }
+
+    resetSimulation() {
+        if (confirm('Are you sure you want to reset the simulation? All progress will be lost.')) {
+            // Stop timer
+            if (this.timer) {
+                clearInterval(this.timer);
+            }
+
+            // Reset state
+            this.sessionId = null;
+            this.currentState = null;
+            this.startTime = null;
+
+            // Hide simulation and results screens
+            document.getElementById('simulation-screen').classList.add('d-none');
+            document.getElementById('results-screen').classList.add('d-none');
+            document.getElementById('phase-nav-dropdown').classList.add('d-none');
+
+            // Show welcome screen
+            document.getElementById('welcome-screen').classList.remove('d-none');
+
+            // Reset timer and phase indicator
+            document.getElementById('timer').textContent = 'Time: 00:00';
+            document.getElementById('phase-indicator').textContent = 'Phase: Getting Started';
+
+            // Clear activity log
+            document.getElementById('activity-log').innerHTML = '';
+        }
     }
 }
 
