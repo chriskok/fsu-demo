@@ -11,6 +11,9 @@ from backend.models import SessionState, SimulationAction, ActionResponse, Sessi
 from backend.scenarios import get_initial_team_state, process_action, get_available_tasks
 from backend.scoring import calculate_final_scores
 
+# TODO: Import LLM integration when ready
+# from llm_tasks import get_coaching_advice, generate_dynamic_scenario
+
 app = FastAPI(title="Executive Function POC", version="1.0.0")
 
 # Mount static files
@@ -54,6 +57,14 @@ async def submit_action(session_id: str, action: SimulationAction) -> ActionResp
     # Update session with action and response
     session.actions.append(action)
     session.team_members = response.updated_team_state
+    
+    # TODO: Add real-time coaching
+    # coaching_advice = await get_coaching_advice({
+    #     "team_summary": session.team_members,
+    #     "recent_actions": session.actions[-3:],
+    #     "phase": session.phase
+    # })
+    # response.coaching_hint = coaching_advice
     
     # Check for phase transitions
     elapsed_minutes = (datetime.now() - session.phase_start_time).seconds / 60

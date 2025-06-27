@@ -2,6 +2,9 @@ from typing import Dict, List
 from backend.models import TeamMember, MoodState, SimulationAction, ActionResponse
 import random
 
+# TODO: Import LLM integration when ready
+# from llm_tasks import get_character_response, ALEX_SYSTEM_PROMPT, JORDAN_SYSTEM_PROMPT, SAM_SYSTEM_PROMPT
+
 def get_initial_team_state() -> Dict[str, TeamMember]:
     """Initialize the three team members with their personalities and traits."""
     return {
@@ -158,7 +161,17 @@ def handle_task_delegation(team_members: Dict[str, TeamMember], action: Simulati
     member.current_tasks.append(task["name"])
     member.workload += task["estimated_hours"]
     
-    # Determine reaction based on fit and current mood
+    # TODO: Replace with LLM character response
+    # reaction = await get_character_response(
+    #     character_name=target,
+    #     prompt_type="delegation", 
+    #     task_name=task["name"],
+    #     workload=member.workload,
+    #     mood=member.mood.value,
+    #     message=action.message or ""
+    # )
+    
+    # Determine reaction based on fit and current mood (PLACEHOLDER - replace with LLM)
     if is_good_fit and skill_match:
         if member.workload < 50:
             member.mood = MoodState.HAPPY
@@ -197,7 +210,15 @@ def handle_message(team_members: Dict[str, TeamMember], action: SimulationAction
     
     member = team_members[target]
     
-    # Simple sentiment analysis for message tone
+    # TODO: Replace with LLM character response
+    # reaction = await get_character_response(
+    #     character_name=target,
+    #     prompt_type="conversation",
+    #     user_message=message,
+    #     mood=member.mood.value
+    # )
+    
+    # Simple sentiment analysis for message tone (PLACEHOLDER - replace with LLM)
     positive_words = ["great", "excellent", "appreciate", "thank", "good", "well done"]
     encouraging_words = ["support", "help", "confident", "believe", "capable"]
     

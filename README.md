@@ -147,7 +147,7 @@ The simulation follows [Kolb's learning cycle](https://www.simplypsychology.org/
 ## Future Work
 
 ### Using actual LLMs
-I've run out of free credits from OpenAI and Anthropic, but if these improvements would be the first thing on my mind:
+I've run out of free credits from OpenAI and Anthropic, but these improvements would be the first thing on my mind:
 - Each character gets their own system prompt with personality traits
 - Let them actually converse naturally instead of scripted responses
 - Adaptive difficulty using RL to adjust complexity based on performance

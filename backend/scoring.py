@@ -2,6 +2,9 @@ from typing import Dict, List
 from backend.models import SessionState, CompetencyScore, MoodState
 import statistics
 
+# TODO: Import LLM integration when ready
+# from llm_tasks import COMPETENCY_FEEDBACK_PROMPT
+
 def calculate_final_scores(session: SessionState) -> Dict[str, CompetencyScore]:
     """Calculate NACE competency scores based on user actions during the simulation."""
     
@@ -283,6 +286,14 @@ def calculate_team_morale(team_members: Dict) -> float:
 
 def generate_critical_thinking_feedback(score: int, good_assignments: int, total_assignments: int) -> str:
     """Generate feedback for critical thinking competency."""
+    # TODO: Replace with LLM-generated personalized feedback
+    # return await get_llm_feedback(
+    #     competency="Critical Thinking",
+    #     score=score,
+    #     evidence=[f"{good_assignments}/{total_assignments} good task assignments"],
+    #     user_actions=session.actions
+    # )
+    
     if score >= 80:
         return "Excellent strategic thinking! You demonstrated strong analytical skills in task assignment and priority setting."
     elif score >= 60:
